@@ -4,8 +4,14 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	private Animator anim;
+    //Implantação do codigo de tiro 
+    public GameObject balas;
+    public GameObject cano;
+
+
+
+    // Use this for initialization
+    private Animator anim;
 	private Rigidbody2D rb2d;
 
 	public Transform posPe;
@@ -31,9 +37,13 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Space)&&tocaChao)
+        {
+            anim.SetTrigger("shooter");
+            Instantiate(balas, new Vector3(cano.transform.position.x, cano.transform.position.y, cano.transform.position.z), cano.transform.rotation);
+        }
 
-		//Implementar Pulo Aqui! 
-	}
+    }
 
 	void FixedUpdate()
 	{
@@ -55,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 			Flip();
 		}
 
-	}
+    }
 	void Flip()
 	{
 		viradoDireita = !viradoDireita;
