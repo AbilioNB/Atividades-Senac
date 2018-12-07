@@ -37,11 +37,13 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.F))
+        /*if (Input.GetKeyDown(KeyCode.F))
         {
             anim.SetTrigger("shooter");
            Instantiate(balas, new Vector3(cano.transform.position.x, cano.transform.position.y, cano.transform.position.z), cano.transform.rotation);
-        }
+        }*/
+        atirar();
+
 
     }
 
@@ -82,5 +84,18 @@ public class PlayerController : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-	
+    void atirar() {
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+
+            anim.SetTrigger("shooter");
+            GameObject balaInst = Instantiate(balas, cano.transform.position, Quaternion.identity) as GameObject;
+            balaInst.GetComponent<moviBalas>().Vel *= transform.localScale.x;
+
+
+        }
+
+    }
 }
+	
+
