@@ -37,14 +37,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        /*if (Input.GetKeyDown(KeyCode.F))
-        {
-            anim.SetTrigger("shooter");
-           Instantiate(balas, new Vector3(cano.transform.position.x, cano.transform.position.y, cano.transform.position.z), cano.transform.rotation);
-        }*/
         atirar();
-
-
     }
 
 	void FixedUpdate()
@@ -84,7 +77,8 @@ public class PlayerController : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-    void atirar() {
+   /*Função que realiza o disparo*/
+	void atirar() {
 
         if (Input.GetKeyDown(KeyCode.F)) {
 
