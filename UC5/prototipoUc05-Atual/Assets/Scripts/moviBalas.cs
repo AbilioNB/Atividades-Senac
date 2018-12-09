@@ -11,7 +11,8 @@ public class moviBalas : MonoBehaviour {
         get { return vel; }
         set { vel = value; }
     }
-    void mover()
+    /*Função utilizada para realizar movimentação do projetil*/
+	void mover()
     {
         Vector3 aux = transform.position;
         aux.x += vel * Time.deltaTime;
@@ -26,8 +27,8 @@ public class moviBalas : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        /* transform.Translate(new Vector2(vel * Time.deltaTime, 0));
-          */
         mover();
     }
+
 }
+

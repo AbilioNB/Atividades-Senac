@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyscript : MonoBehaviour {
 
-	public GameObject x;
+
 
 	// Use this for initialization
 	void Start () {
@@ -13,20 +13,12 @@ public class enemyscript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		colision ();
+		
 	}
-
-	void colision(GameObject x){
-	
-		if (x.gameObject.CompareTag ("alien1")) {
-			Destroy (x.gameObject);
+	/*Utiliza o sistema de colisão para caso entre em contato com o vilão , ele seja destruido*/
+	void OnTriggerEnter2D(Collider2D col){
+		if(col.gameObject.tag =="bala"){
+			Destroy(this.gameObject);
 		}
 	}
-	/*void OnConllisonEnter2D(Collision2D other){
-	
-		if (other.gameObject.CompareTag("alien1")) {
-			Destroy (other.gameObject);
-		}
-	
-	}*/
 }
