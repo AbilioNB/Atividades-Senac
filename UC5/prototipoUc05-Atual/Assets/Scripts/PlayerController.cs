@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject cano;
 	//Função de segundo tiro
 	public GameObject balas2;
+	public int kbalas;
+	//Texto da seleção de Arma
+	public Text ArmText;
 
     // Use this for initialization
     private Animator anim;
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
+		//Iniciando o kbalas
+		kbalas=1;
 
 		GameObject mensagemControleObject = GameObject.FindWithTag ("MensagemControle");
 		if (mensagemControleObject != null) {
@@ -37,7 +42,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        atirar();
+		trocarArma();
+		atirar();
+		ArmText.text=kbalas.ToString();
     }
 
 	void FixedUpdate()
@@ -51,9 +58,7 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			anim.SetTrigger("parado");
 		}
-
-		//Programar o pulo Aqui! 
-
+			
 		if (translationX > 0 && !viradoDireita) {
 			Flip ();
 		} else if (translationX < 0 && viradoDireita) {
@@ -78,16 +83,29 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	/*Função para trocar as armas */
-
+	void trocarArma(){
+		if(Input.GetKeyDown(KeyCode.Q)){
+			if(kbalas==1){
+				kbalas=2;
+			}else{
+				kbalas=1;
+			}
+		}
+	}
 
    /*Função que realiza o disparo*/
 	void atirar() {
 
         if (Input.GetKeyDown(KeyCode.F)) {
-
             anim.SetTrigger("shooter");
-            GameObject balaInst = Instantiate(balas, cano.transform.position, Quaternion.identity) as GameObject;
-            balaInst.GetComponent<moviBalas>().Vel *= transform.localScale.x;
+			if (kbalas == 1) {
+				GameObject balaInst = Instantiate (balas, cano.transform.position, Quaternion.identity) as GameObject;
+						balaInst.GetComponent<moviBalas>().Vel *= transform.localScale.x;
+			} else {
+						GameObject balaInst = Instantiate(balas2, cano.transform.position, Quaternion.identity) as GameObject;
+						balaInst.GetComponent<moviBalas>().Vel *= transform.localScale.x;
+					}
+           
 
 
         }
