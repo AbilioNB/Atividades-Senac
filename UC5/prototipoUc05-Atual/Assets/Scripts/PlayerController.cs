@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour {
     //Implantação do codigo de tiro 
     public GameObject balas;
     public GameObject cano;
-
-
+	//Função de segundo tiro
+	public GameObject balas2;
 
     // Use this for initialization
     private Animator anim;
@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
+	/*Função para trocar as armas */
+
+
    /*Função que realiza o disparo*/
 	void atirar() {
 
