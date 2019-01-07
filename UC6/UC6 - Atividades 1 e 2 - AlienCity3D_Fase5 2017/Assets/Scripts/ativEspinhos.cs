@@ -17,6 +17,7 @@ public class ativEspinhos : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Player")){
 			EspinhosGo.gameObject.GetComponent<Rigidbody>().useGravity=true;
+			print("Caiu os espinhos");
 		}
 	}
 }
