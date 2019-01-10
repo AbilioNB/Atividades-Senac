@@ -6,6 +6,7 @@ public class abrePortas : MonoBehaviour {
 
 	// Use this for initialization
 	public GameObject door;
+	private int keysPlayer;
 	void Start () {
 		
 	}
@@ -16,7 +17,8 @@ public class abrePortas : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		if(other.gameObject.CompareTag("Player")){
+		keysPlayer=other.GetComponent<PlayerController>().contKeys;
+		if(other.gameObject.CompareTag("Player")&&keysPlayer==2){
 				door.gameObject.GetComponent<Animation>().Play ();
 				print("Abrir portas");
 		}

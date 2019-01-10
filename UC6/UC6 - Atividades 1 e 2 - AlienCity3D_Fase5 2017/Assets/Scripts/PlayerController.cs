@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	protected Vector3 move = Vector3.zero;
 	private bool jump = false;
 
+	public int contKeys;
 
 	
 	void Start()
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 		cc = GetComponent<CharacterController> ();
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Parado");
+		contKeys=0;
 	}
 
 	void Update()
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 		move += gravidade;
 		cc.Move (move* Time.deltaTime);
 		Anima ();
+		
 	}
 	 
 	void Anima()
@@ -62,4 +65,12 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+	void OnTriggerEnter(Collider other){
+		if(other.gameObject.CompareTag("key")){
+				contKeys++;
+				print(contKeys);
+				Destroy(other.gameObject);
+		}
+	}
+	
 }
