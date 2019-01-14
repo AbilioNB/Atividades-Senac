@@ -6,6 +6,7 @@ public class movPlatform : MonoBehaviour {
 
 	// Use this for initialization
 	public GameObject buffer;
+	public GameObject my;
 	void Start () {
 		
 	}
@@ -18,6 +19,7 @@ public class movPlatform : MonoBehaviour {
 		if(other.gameObject.CompareTag("Player")){
 				buffer.gameObject.GetComponent<Animation>().Play ();
 				print("Ativei as plataforma");
+				Destroy(my);
 		}
 	}
 }

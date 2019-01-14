@@ -7,6 +7,7 @@ public class armadilhaParede : MonoBehaviour {
 	// Use this for initialization
 	public GameObject pE;
 	public GameObject pD;
+	public GameObject my;
 	void Start () {
 		
 	}
@@ -20,6 +21,7 @@ public class armadilhaParede : MonoBehaviour {
 				pE.gameObject.GetComponent<Animation>().Play ();
 				pD.gameObject.GetComponent<Animation>().Play ();
 				print("Ativei as paredes");
+				Destroy(my);
 		}
 	}
 }
