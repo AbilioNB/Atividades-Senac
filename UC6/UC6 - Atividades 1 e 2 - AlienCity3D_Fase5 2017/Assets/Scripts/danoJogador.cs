@@ -19,8 +19,8 @@ public class danoJogador : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		life=life-1;
-		lifeBar.fillAmount=life/100;
+		//life=life-1;
+		//lifeBar.fillAmount=life/100;
 		deadPlayer();
 
 	}

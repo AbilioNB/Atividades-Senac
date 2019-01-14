@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
@@ -13,7 +14,12 @@ public class PlayerController : MonoBehaviour {
 	private bool jump = false;
 
 	public int contKeys;
+	public Image skey1;
+	public Image skey2;
 
+	public int contGema;
+
+	public Text showScoreHud;
 	
 	void Start()
 	{
@@ -43,6 +49,8 @@ public class PlayerController : MonoBehaviour {
 		move += gravidade;
 		cc.Move (move* Time.deltaTime);
 		Anima ();
+		showKeys();
+		showScoreGems();
 		
 	}
 	 
@@ -70,7 +78,23 @@ public class PlayerController : MonoBehaviour {
 				contKeys++;
 				print(contKeys);
 				Destroy(other.gameObject);
+		}else if(other.gameObject.CompareTag("gema")){
+				contGema++;
+				print(contGema);
+				Destroy(other.gameObject);
+		}
+	}
+	void showKeys(){
+		if(contKeys==1){
+			skey1.fillAmount=1;
+		}
+		if(contKeys==2){
+			skey2.fillAmount=1;
 		}
 	}
 	
+	void showScoreGems(){
+			showScoreHud.text=contGema.ToString();
+	} 
+
 }
