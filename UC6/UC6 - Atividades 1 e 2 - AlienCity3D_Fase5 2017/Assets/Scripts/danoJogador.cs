@@ -19,18 +19,15 @@ public class danoJogador : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//life=life-1;
-		//lifeBar.fillAmount=life/100;
 		deadPlayer();
 
 	}
 	//Para espinhos
-	void OnCollisionEnter(Collision other){
+	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("espinho")){
 				life-=20;
 				lifeBar.fillAmount=life/100;
 				Debug.Log(life);
-			
 		}else if (other.gameObject.CompareTag("parede"))
 		{ 
 				life-=25;
