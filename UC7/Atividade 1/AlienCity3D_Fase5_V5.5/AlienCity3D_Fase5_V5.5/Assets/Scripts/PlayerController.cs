@@ -41,10 +41,10 @@ public class PlayerController : MonoBehaviour {
 					move = new Vector3 (0,0,(MoveSpeed*-1));
 				break;
 				case 3:
-					move= new Vector3 (0,(MoveSpeed*-1),0);
+					move= new Vector3 ((MoveSpeed*-1),0,0);
 				break;
 				case 4:
-					move= new Vector3 (0,MoveSpeed,0);
+					move= new Vector3 (MoveSpeed,0,0);
 				break;
 				default:
 					move= new Vector3 (0,0,0);
