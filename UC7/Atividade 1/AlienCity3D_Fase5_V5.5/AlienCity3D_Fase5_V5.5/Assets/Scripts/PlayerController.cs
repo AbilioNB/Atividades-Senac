@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	protected Vector3 move = Vector3.zero;
 	private bool jump = false;
 
+	private int controlMove;
 
 	
 	void Start()
@@ -19,14 +20,42 @@ public class PlayerController : MonoBehaviour {
 		cc = GetComponent<CharacterController> ();
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Parado");
+		controlMove=0;
 	}
 
+/*Legendas do Move:
+0 : Parado
+1: Frente
+2:Tras
+3:Esquerda
+4:Direita
+7:Pula */
 	void Update()
 	{
-		Vector3 move = Input.GetAxis ("Vertical") * transform.TransformDirection (Vector3.forward) * MoveSpeed;
-		transform.Rotate (new Vector3 (0, Input.GetAxis ("Horizontal") * RotationSpeed * Time.deltaTime, 0));
+		Vector3 move;
+		switch(controlMove){
+			case 1:
+				 move = new Vector3 (0,0,MoveSpeed);
+				break;
+				case 2:
+					move = new Vector3 (0,0,(MoveSpeed*-1));
+				break;
+				case 3:
+					move= new Vector3 (0,(MoveSpeed*-1),0);
+				break;
+				case 4:
+					move= new Vector3 (0,MoveSpeed,0);
+				break;
+				default:
+					move= new Vector3 (0,0,0);
+					break;
+		}
 		
-		if (!cc.isGrounded) {
+		
+		//Vector3 move = Input.GetAxis ("Vertical") * transform.TransformDirection (Vector3.forward) * MoveSpeed;
+		//transform.Rotate (new Vector3 (0, Input.GetAxis ("Horizontal") * RotationSpeed * Time.deltaTime, 0));
+		
+		if (controlMove!=7) {
 			gravidade += Physics.gravity * Time.deltaTime;
 		} 
 		else 
@@ -42,16 +71,34 @@ public class PlayerController : MonoBehaviour {
 		cc.Move (move* Time.deltaTime);
 		Anima ();
 	}
-	 
+
+	public void goFrente(){
+		controlMove=1;
+	}
+	public void goTras(){
+		controlMove=2;
+	}
+	public void goEsquerda(){
+		controlMove=3;
+	}
+	public void goDireita(){
+		controlMove=4;
+	}
+	public void goPulo(){
+		controlMove=7;
+	}
+	public void stop(){
+		controlMove=0;
+	}
 	void Anima()
 	{
-		if (!Input.anyKey)
+		if (controlMove==0)
 		{
 			anim.SetTrigger("Parado");
 		} 
 		else 
 		{
-			if(Input.GetKeyDown("space"))
+			if(controlMove==7)
 			{
 				anim.SetTrigger("Pula");
 				jump = true;
