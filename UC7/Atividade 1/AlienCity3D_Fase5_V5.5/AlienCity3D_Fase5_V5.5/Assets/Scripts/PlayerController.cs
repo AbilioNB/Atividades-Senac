@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 
 	private int controlMove;
 
+	private int life;
 	
 	void Start()
 	{
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Parado");
 		controlMove=0;
+		life=100;
 	}
 
 /*Legendas do Move:
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 			gravidade = Vector3.zero;
 			if(jump)
 			{
-				gravidade.y = 6f;
+				gravidade.y = 3f;
 				jump = false;
 			}
 		}
@@ -89,6 +91,14 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void stop(){
 		controlMove=0;
+	}
+
+	public void tomarDano(){
+
+		life=life-10;
+		Handheld.Vibrate();
+		Debug.Log(life);
+
 	}
 	void Anima()
 	{
