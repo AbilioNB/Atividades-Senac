@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
 
+	public GameObject persona;
 	public float MoveSpeed;
 	public float RotationSpeed;
 	CharacterController cc;
@@ -112,6 +115,10 @@ public class PlayerController : MonoBehaviour {
 		Handheld.Vibrate();
 		Debug.Log(life);
 		if(life==0){
+				
+				//Handheld.Vibrate();	
+				StartCoroutine(Vibrate());			
+				SceneManager.LoadScene("EndGame");
 		}
 	}
 	void Anima()
@@ -138,4 +145,16 @@ public class PlayerController : MonoBehaviour {
 			nochao=true;
 		}
 	}
+	private IEnumerator Vibrate(){
+		float interval = 0.5f ;
+     	WaitForSeconds wait = new WaitForSeconds(interval);
+     	float t ;
+     for( t = 0 ; t < 3 ; t += interval ) // Change the end condition (t < 1) if you want
+     {
+         Handheld.Vibrate();
+         yield return wait ;
+     }
+
+	}
+
 }
