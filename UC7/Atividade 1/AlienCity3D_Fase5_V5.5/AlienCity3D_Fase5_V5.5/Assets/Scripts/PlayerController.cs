@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 		cc = GetComponent<CharacterController> ();
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Parado");
-		controlMove=7;
+		controlMove=0;
 		life=100;
 		nochao=true;
 	}
@@ -97,7 +97,6 @@ public class PlayerController : MonoBehaviour {
 		controlMove=4;
 	}
 	public void goPulo(){
-		//controlMove=7;
 		if(nochao){
 			controlMove=7;
 		}else{
@@ -106,9 +105,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void stop(){
 		controlMove=0;
-			
 	}
-
 	public void tomarDano(){
 
 		life=life-10;
