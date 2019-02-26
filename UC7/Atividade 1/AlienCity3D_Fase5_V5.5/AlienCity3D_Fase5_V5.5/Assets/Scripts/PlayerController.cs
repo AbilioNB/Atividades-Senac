@@ -15,14 +15,17 @@ public class PlayerController : MonoBehaviour {
 	private int controlMove;
 
 	private int life;
+
+	private bool nochao;
 	
 	void Start()
 	{
 		cc = GetComponent<CharacterController> ();
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Parado");
-		controlMove=0;
+		controlMove=7;
 		life=100;
+		nochao=true;
 	}
 
 /*Legendas do Move:
@@ -54,24 +57,31 @@ public class PlayerController : MonoBehaviour {
 		}
 		
 		
-		//Vector3 move = Input.GetAxis ("Vertical") * transform.TransformDirection (Vector3.forward) * MoveSpeed;
-		//transform.Rotate (new Vector3 (0, Input.GetAxis ("Horizontal") * RotationSpeed * Time.deltaTime, 0));
-		
 		if (controlMove!=7) {
 			gravidade += Physics.gravity * Time.deltaTime;
 		} 
 		else 
 		{
-			gravidade = Vector3.zero;
-			if(jump)
+			
+		if(nochao)
 			{
-				gravidade.y = 3f;
-				jump = false;
+				gravidade = Vector3.zero;
+				if(jump)
+				{
+					gravidade.y = 5f;
+					jump = false;
+				}
+				nochao=false;
 			}
+
 		}
 		move += gravidade;
 		cc.Move (move* Time.deltaTime);
 		Anima ();
+		toNoSolo();
+		if(controlMove==7){
+			controlMove=0;
+		}
 	}
 
 	public void goFrente(){
@@ -87,10 +97,16 @@ public class PlayerController : MonoBehaviour {
 		controlMove=4;
 	}
 	public void goPulo(){
-		controlMove=7;
+		//controlMove=7;
+		if(nochao){
+			controlMove=7;
+		}else{
+			controlMove=0;
+		}
 	}
 	public void stop(){
 		controlMove=0;
+			
 	}
 
 	public void tomarDano(){
@@ -98,7 +114,8 @@ public class PlayerController : MonoBehaviour {
 		life=life-10;
 		Handheld.Vibrate();
 		Debug.Log(life);
-
+		if(life==0){
+		}
 	}
 	void Anima()
 	{
@@ -117,6 +134,11 @@ public class PlayerController : MonoBehaviour {
 			{
 				anim.SetTrigger("Corre");
 			}
+		}
+	}
+	void toNoSolo(){
+		if(cc.isGrounded){
+			nochao=true;
 		}
 	}
 }
