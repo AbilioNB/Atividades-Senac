@@ -115,9 +115,8 @@ public class PlayerController : MonoBehaviour {
 		Handheld.Vibrate();
 		Debug.Log(life);
 		if(life==0){
-				
-				//Handheld.Vibrate();	
-				StartCoroutine(Vibrate());			
+				 Handheld.Vibrate();
+				Handheld.Vibrate();		
 				SceneManager.LoadScene("EndGame");
 		}
 	}
@@ -145,16 +144,6 @@ public class PlayerController : MonoBehaviour {
 			nochao=true;
 		}
 	}
-	private IEnumerator Vibrate(){
-		float interval = 0.5f ;
-     	WaitForSeconds wait = new WaitForSeconds(interval);
-     	float t ;
-     for( t = 0 ; t < 3 ; t += interval ) // Change the end condition (t < 1) if you want
-     {
-         Handheld.Vibrate();
-         yield return wait ;
-     }
-
-	}
+	
 
 }
