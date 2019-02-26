@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 		cc = GetComponent<CharacterController> ();
 		anim = GetComponent<Animator>();
 		anim.SetTrigger("Parado");
-		controlMove=0;
+		controlMove=7;
 		life=100;
 		nochao=true;
 	}
