@@ -40,19 +40,25 @@ public class PlayerController : MonoBehaviour {
 7:Pula */
 	void Update()
 	{
+		//(x,y,z)
 		Vector3 move;
 		switch(controlMove){
 			case 1:
-				 move = new Vector3 (0,0,MoveSpeed);
+				move = 1 * transform.TransformDirection (Vector3.forward) * MoveSpeed;
+					transform.Rotate (new Vector3 (0,0* RotationSpeed * Time.deltaTime, 0));
 				break;
 				case 2:
-					move = new Vector3 (0,0,(MoveSpeed*-1));
+					move = -1 * transform.TransformDirection (Vector3.forward) * MoveSpeed;
+					transform.Rotate (new Vector3 (0,0* RotationSpeed * Time.deltaTime, 0));
+				break;
 				break;
 				case 3:
-					move= new Vector3 ((MoveSpeed*-1),0,0);
+					move = 0 * transform.TransformDirection (Vector3.forward) * MoveSpeed;
+						transform.Rotate (new Vector3 (0,-1* RotationSpeed * Time.deltaTime, 0));
 				break;
 				case 4:
-					move= new Vector3 (MoveSpeed,0,0);
+					move = 0 * transform.TransformDirection (Vector3.forward) * MoveSpeed;
+						transform.Rotate (new Vector3 (0,1* RotationSpeed * Time.deltaTime, 0));
 				break;
 				default:
 					move= new Vector3 (0,0,0);
