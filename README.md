@@ -1,4 +1,4 @@
-# Atividades-Senac téc. em  JOGOS DIGITAIS 
+# Atividades-Senac téc. em  Jogos Digitais 
 
 Este repositório comporta as atividades do curso técnico em jogos digitais  do Senac-RS até o 2 semestre.
 
